@@ -169,5 +169,5 @@ spec:
 ```   
 The kube-apiserver will restart the pod periodically. You can watch the logs 
 ```
-tail -f /var/log/apiserver/audit.log
+tail -f /var/log/calico/audit/kube-audit.log
 ```
