@@ -1,6 +1,6 @@
 ## Enabling kubernetes auditing in a kubeadm installed K8S cluster
 
-### Create a audit policy file
+### Create a audit policy file (Calico-example)
 ```
 mkdir /etc/kubernetes/policies
 
@@ -27,7 +27,7 @@ rules:
       resources: ["pods", "namespaces", "serviceaccounts", "endpoints"]
 ```
 
-### Modify kube-api
+### Modify kube-apiserver manifest
 
 ```
 vi /etc/kubernetes/manifests/kube-apiserver.yaml
@@ -167,3 +167,7 @@ spec:
       type: DirectoryOrCreate
     name: log
 ```   
+The kube-apiserver will restart the pod periodically. You can watch the logs 
+```
+tail -f /var/log/apiserver/audit.log
+```
