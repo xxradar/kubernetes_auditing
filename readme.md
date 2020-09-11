@@ -76,7 +76,7 @@ spec:
     - --tls-cert-file=/etc/kubernetes/pki/apiserver.crt
     - --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
     - --audit-policy-file=/etc/kubernetes/policies/audit-policy.yaml
-    - --audit-log-path=/var/log/apiserver/audit.log
+    - --audit-log-path=/var/log/calico/audit/kube-audit.log
     - --audit-log-maxage=30
     - --audit-log-maxsize=200
     image: k8s.gcr.io/kube-apiserver:v1.19.0
@@ -133,7 +133,7 @@ spec:
     - mountPath: /etc/kubernetes/policies
       name: policies
       readOnly: true
-    - mountPath: /var/log/apiserver
+    - mountPath: /var/log/calico/audit/
       name: log
   hostNetwork: true
   priorityClassName: system-node-critical
@@ -163,7 +163,7 @@ spec:
       type: DirectoryOrCreate
     name: policies
   - hostPath:
-      path: /var/log/apiserver
+      path: /var/log/calico/audit
       type: DirectoryOrCreate
     name: log
 ```   
